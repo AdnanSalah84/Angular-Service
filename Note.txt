@@ -1,1 +1,3 @@
 ng generate service HttpCache --module core --spec false
+
+ng g s services/data --spec false

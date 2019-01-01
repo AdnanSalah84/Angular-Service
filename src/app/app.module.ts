@@ -29,7 +29,7 @@ import { LoggerService } from './services/logger.service';
     CoreModule,
     HttpClientModule
   ],
-  providers: [LoggerService],
+  //providers: [LoggerService], Added ProvidedIn in 6 or 7 version. See in logger.service.ts file
   bootstrap: [AppComponent]
 })
 export class AppModule { }
