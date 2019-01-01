@@ -1,0 +1,1 @@
+ng generate service HttpCache --module core --spec false
