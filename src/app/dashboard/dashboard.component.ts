@@ -7,6 +7,9 @@ import { Book } from "app/models/book";
 import { Reader } from "app/models/reader";
 import { DataService } from 'app/core/data.service';
 import { BookTrackerError } from '../models/bookTrackerError';
+import { LoggerService } from '../services/logger.service';
+import { log } from 'util';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -20,13 +23,16 @@ export class DashboardComponent implements OnInit {
   mostPopularBook: Book;
 
   constructor(private dataService: DataService,
-              private title: Title,
-              private route: ActivatedRoute) { }
+    private title: Title,
+    private route: ActivatedRoute,
+    private loggerService: LoggerService) {
+      this.loggerService.log('Creating the dashboard.');
+  }
 
   ngOnInit() {
     let resolvedData: Book[] | BookTrackerError = this.route.snapshot.data['resolvedBooks'];
 
-    if(resolvedData instanceof BookTrackerError){
+    if (resolvedData instanceof BookTrackerError) {
       console.log(`Dashboard component error: ${resolvedData.friendlyMessage}`);
     } else {
       this.allBooks = resolvedData;

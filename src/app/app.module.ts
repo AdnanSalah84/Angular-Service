@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { EditReaderComponent } from './edit-reader/edit-reader.component';
 import { CoreModule } from './core/core.module';
+import { LoggerService } from './services/logger.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CoreModule } from './core/core.module';
     CoreModule,
     HttpClientModule
   ],
+  providers: [LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
