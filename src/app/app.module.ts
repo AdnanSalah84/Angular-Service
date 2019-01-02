@@ -12,8 +12,10 @@ import { EditBookComponent } from './edit-book/edit-book.component';
 import { EditReaderComponent } from './edit-reader/edit-reader.component';
 import { CoreModule } from './core/core.module';
 import { LoggerService } from './services/logger.service';
-import { DataService } from './core/data.service';
 import { PlainLoggerService } from './services/plain-logger.service';
+import { DataService } from './services/data.service';
+import { dataServiceFactory } from './services/data.service.factory';
+
 
 @NgModule({
   declarations: [
@@ -33,8 +35,17 @@ import { PlainLoggerService } from './services/plain-logger.service';
   ],
   //providers: [LoggerService], Added ProvidedIn in 6 or 7 version. See in logger.service.ts file
   providers: [
-    { provide: LoggerService, useClass: PlainLoggerService },
-    DataService],
+    //{ provide: LoggerService, useClass: PlainLoggerService },
+    //{ provide: LoggerService, useExisting: PlainLoggerService },
+    /*{
+      provide: LoggerService, useValue: {
+        log: (message) => console.log(`MESSAGE: ${message}`),
+        error: (message) => console.log(`PROBLEM: ${message}`)
+      }
+    },
+    { provide: DataService, useFactory: dataServiceFactory, deps:[LoggerService] }*/
+    LoggerService, DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

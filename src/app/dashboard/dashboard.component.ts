@@ -25,9 +25,9 @@ export class DashboardComponent implements OnInit {
   constructor(private dataService: DataService,
     private title: Title,
     private route: ActivatedRoute,
-    private loggerService: LoggerService,) {
+    private loggerService: LoggerService) {
 
-      this.loggerService.log('Creating the dashboard.');
+      this.loggerService.log('Creating the dashboard!');
   }
 
   ngOnInit() {
