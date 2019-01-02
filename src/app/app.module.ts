@@ -11,10 +11,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { EditReaderComponent } from './edit-reader/edit-reader.component';
 import { CoreModule } from './core/core.module';
-import { LoggerService } from './services/logger.service';
-import { PlainLoggerService } from './services/plain-logger.service';
-import { DataService } from './services/data.service';
-import { dataServiceFactory } from './services/data.service.factory';
+// import { LoggerService } from './core/logger.service';
+// import { PlainLoggerService } from './core/plain-logger.service';
+// import { DataService } from './core/data.service';
+// import { dataServiceFactory } from './core/data.service.factory';
 
 
 @NgModule({
@@ -34,18 +34,7 @@ import { dataServiceFactory } from './services/data.service.factory';
     HttpClientModule
   ],
   //providers: [LoggerService], Added ProvidedIn in 6 or 7 version. See in logger.service.ts file
-  providers: [
-    //{ provide: LoggerService, useClass: PlainLoggerService },
-    //{ provide: LoggerService, useExisting: PlainLoggerService },
-    /*{
-      provide: LoggerService, useValue: {
-        log: (message) => console.log(`MESSAGE: ${message}`),
-        error: (message) => console.log(`PROBLEM: ${message}`)
-      }
-    },
-    { provide: DataService, useFactory: dataServiceFactory, deps:[LoggerService] }*/
-    LoggerService, DataService
-  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

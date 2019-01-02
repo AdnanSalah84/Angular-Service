@@ -1,18 +1,11 @@
-import { LogResponseInterceptor } from './log-response.interceptor';
 import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { throwIfAlreadyLoaded } from "app/core/module-import-guard";
 
 import { LoggerService } from './logger.service';
 import { DataService } from './data.service';
 import { PlainLoggerService } from "./plain-logger.service";
-import { throwIfAlreadyLoaded } from "app/core/module-import-guard";
-import { BookTrackerErrorHandlerService } from './book-tracker-error-handler.service';
-import { BooksResolverService } from './books-resolver.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AddHeaderInterceptor } from './add-header.interceptor';
-import { HttpCacheService } from './http-cache.service';
-import { CacheInterceptor } from './cache.interceptor';
-
+import { dataServiceFactory } from './data.service.factory';
 
 @NgModule({
   imports: [
@@ -20,15 +13,17 @@ import { CacheInterceptor } from './cache.interceptor';
   ],
   declarations: [],
   providers: [
-    LoggerService,
-    DataService,
-    { provide: ErrorHandler, useClass: BookTrackerErrorHandlerService },
-    { provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LogResponseInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
-    BooksResolverService,
-    HttpCacheService
-  ]
+    //{ provide: LoggerService, useClass: PlainLoggerService },
+    //{ provide: LoggerService, useExisting: PlainLoggerService },
+    /*{
+      provide: LoggerService, useValue: {
+        log: (message) => console.log(`MESSAGE: ${message}`),
+        error: (message) => console.log(`PROBLEM: ${message}`)
+      }
+    },
+    { provide: DataService, useFactory: dataServiceFactory, deps:[LoggerService] }*/
+    LoggerService, DataService
+  ],
 })
 export class CoreModule {
 

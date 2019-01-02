@@ -7,8 +7,8 @@ import { Book } from "app/models/book";
 import { Reader } from "app/models/reader";
 //import { DataService } from 'app/core/data.service';
 import { BookTrackerError } from '../models/bookTrackerError';
-import { LoggerService } from '../services/logger.service';
-import { DataService } from 'app/services/data.service';
+import { LoggerService } from 'app/core/logger.service';
+import { DataService } from 'app/core/data.service';
 
 
 @Component({
