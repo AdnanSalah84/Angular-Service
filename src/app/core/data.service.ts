@@ -15,9 +15,21 @@ export class DataService {
 
   mostPopularBook: Book = allBooks[0];
 
+  getAuthorRecommendation(readerID: number): Promise<string> {
+    return new Promise((resolve, reject) => {
+      setTimeout(()=> {
+        if(readerID > 0){
+          resolve('Dr Seuss');
+        } else {
+          reject('Invalid reader ID');
+        }
+      }, 2000);
+    });
+  }
+
   constructor(private loggerService: LoggerService, private http: HttpClient) { }
 
-  getAllReaders() : Observable<Reader[] | BookTrackerError>{
+  getAllReaders(): Observable<Reader[] | BookTrackerError> {
     return this.http.get<Reader[]>('/api/readers') // /api/errors/500
       .pipe(
         catchError(this.handleError)
@@ -36,7 +48,7 @@ export class DataService {
     return allReaders.find(reader => reader.readerID === id);
   }
 
-  getAllBooks() : Book[]{
+  getAllBooks(): Book[] {
     return allBooks;
   }
 

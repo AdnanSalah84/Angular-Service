@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private loggerService: LoggerService) {
 
-      this.loggerService.log('Creating the dashboard!');
+    this.loggerService.log('Creating the dashboard!');
   }
 
   ngOnInit() {
@@ -40,7 +40,23 @@ export class DashboardComponent implements OnInit {
       );
     this.mostPopularBook = this.dataService.mostPopularBook;
 
+    /*this.dataService.getAuthorRecommendation(-1)
+      .then(
+        (author: string) => this.loggerService.log(author),
+        (err: string) => this.loggerService.error(`The promise was rejected: ${err}`)
+      )
+      .catch((error: Error) => this.loggerService.error(error.message));*/
+
+    this.getAuthorRecommendationAsync(1)
+      .catch(err => this.loggerService.error(err));
+
     this.loggerService.log('Done with dashboard initialization')
+  }
+
+  private async getAuthorRecommendationAsync(readerID: number): Promise<void> {
+
+    let author: string = await this.dataService.getAuthorRecommendation(readerID);
+    this.loggerService.log(author);
   }
 
   deleteBook(bookID: number): void {

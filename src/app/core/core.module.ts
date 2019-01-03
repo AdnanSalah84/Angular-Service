@@ -5,7 +5,7 @@ import { throwIfAlreadyLoaded } from "app/core/module-import-guard";
 import { LoggerService } from './logger.service';
 import { DataService } from './data.service';
 import { PlainLoggerService } from "./plain-logger.service";
-import { dataServiceFactory } from './data.service.factory';
+//import { dataServiceFactory } from './data.service.factory';
 
 @NgModule({
   imports: [
