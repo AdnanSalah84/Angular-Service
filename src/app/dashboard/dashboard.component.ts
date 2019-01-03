@@ -10,7 +10,6 @@ import { BookTrackerError } from '../models/bookTrackerError';
 import { LoggerService } from 'app/core/logger.service';
 import { DataService } from 'app/core/data.service';
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -50,7 +49,11 @@ export class DashboardComponent implements OnInit {
     this.getAuthorRecommendationAsync(1)
       .catch(err => this.loggerService.error(err));
 
-    this.loggerService.log('Done with dashboard initialization')
+      this.title.setTitle(`Book Tracker ${VERSION.full}`)
+
+    this.loggerService.log('Done with dashboard initialization');
+
+    throw new Error('Ugly technical error!')
   }
 
   private async getAuthorRecommendationAsync(readerID: number): Promise<void> {

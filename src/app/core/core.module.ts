@@ -6,6 +6,7 @@ import { LoggerService } from './logger.service';
 import { DataService } from './data.service';
 import { PlainLoggerService } from "./plain-logger.service";
 //import { dataServiceFactory } from './data.service.factory';
+import { BookTrackerErrorHandlerService } from './book-tracker-error-handler.service';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { PlainLoggerService } from "./plain-logger.service";
       }
     },
     { provide: DataService, useFactory: dataServiceFactory, deps:[LoggerService] }*/
-    LoggerService, DataService
+    LoggerService, DataService,
+    {provide: ErrorHandler, useClass: BookTrackerErrorHandlerService}
   ],
 })
 export class CoreModule {
